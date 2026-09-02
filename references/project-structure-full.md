@@ -133,7 +133,7 @@ createRoot(document.getElementById('root')!).render(
 - `entities/` holds plain TypeScript interfaces that mirror the database models. No business logic.
 - `api/clients/` is exclusively for this project's own backend HTTP calls. Third-party SDK integrations go in `infrastructure/`.
 - `api/interfaces/responses/` is only for composite or custom backend responses. If the response is a plain entity, reference `entities/` directly.
-- `adapters/hooks/actions/` contains React hooks (useXxx) that handle backend use cases. They call functions from `api/clients/` and never import from `presentation/` directly.
+- `adapters/hooks/actions/` contains React hooks (useXxx) that handle backend use cases. They call functions from `api/clients/` and never import from `presentation/` directly. Stays flat while small; once it holds 8+ hooks or hooks for 3+ distinct entities, it subdivides into one subfolder per entity — see `references/actions.md`.
 - `adapters/hooks/common/` contains utility hooks with no backend coupling (debounce, pagination, media query, etc.).
 - `presentation/layout/` and `presentation/ui/` use a **folder-per-component** structure. Each component's props interface (`[ComponentName]Props.ts`) lives in the same folder. Omit the props file if the component accepts no props.
 - Skeleton components live in `presentation/ui/[Section]Skeleton/` and are treated as regular UI components.

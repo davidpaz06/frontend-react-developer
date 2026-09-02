@@ -53,6 +53,7 @@ These apply to every task unless the user explicitly overrides them:
 | `references/vite-config.md`              | @ alias, tsconfig paths, Tailwind plugin setup                                             |
 | `references/naming-rules.md`             | File naming, component props colocation, skeleton naming, cheat sheet                      |
 | `references/anti-patterns.md`            | Bloated state, prop drilling, prop explosion, boolean flags, fat hooks, fetch in component |
+| `references/actions.md`                  | When and how to subdivide `adapters/hooks/actions/` by domain                              |
 | `references/project-structure-full.md`   | Directory tree for full projects (backend + auth)                                          |
 | `references/project-structure-simple.md` | Directory tree for simple projects (no backend)                                            |
 
@@ -122,7 +123,7 @@ Identify the task type first, then follow its workflow. When a user request is a
 
 1. Read the existing code to understand current structure and behavior.
 2. Read `references/anti-patterns.md` and identify which anti-pattern(s) apply. Name them explicitly before proposing a fix.
-3. Read `references/naming-rules.md` and the pattern file(s) most relevant to the refactor target.
+3. Read `references/naming-rules.md` and the pattern file(s) most relevant to the refactor target. If the target is a bloated `adapters/hooks/actions/` folder, read `references/actions.md`.
 4. Propose the approach and the files affected before writing code. Confirm if the scope is large.
 5. Apply changes. Touch only what's necessary for the refactor.
 6. Verify the public interface (what the parent passes in, what the component returns) is preserved or explicitly updated.
@@ -140,7 +141,7 @@ Identify the task type first, then follow its workflow. When a user request is a
 1. Identify which layer(s) the feature touches: `presentation/`, `adapters/`, `api/`, `infrastructure/`, `shared/`.
 2. Read `references/component-flow.md`.
 3. Read `references/naming-rules.md`.
-4. Load additional pattern files as needed (e.g., `routing.md` if adding a route, `auth-pattern.md` if the feature is behind auth, `loader-pattern.md` if it pre-fetches data, `form-validation.md` if it has a form).
+4. Load additional pattern files as needed (e.g., `routing.md` if adding a route, `auth-pattern.md` if the feature is behind auth, `loader-pattern.md` if it pre-fetches data, `form-validation.md` if it has a form, `actions.md` if adding this feature's hooks would push `adapters/hooks/actions/` over the split trigger).
 5. Build in layer order: API client → action hook → component. Types first, then logic, then UI.
 6. Apply optimistic UI for any mutation.
 7. Keep handler functions in a separate `.handlers.ts` file inside the page folder.

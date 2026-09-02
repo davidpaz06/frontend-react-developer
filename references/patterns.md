@@ -13,3 +13,4 @@ Each pattern lives in its own reference file. Load only the file relevant to the
 | Auth Pattern | `references/auth-pattern.md` | Login, logout, protected routes, token refresh, AuthContext |
 | Vite Config & tsconfig | `references/vite-config.md` | Project setup, alias config, Tailwind installation |
 | Anti-Patterns | `references/anti-patterns.md` | Refactor tasks, design errors, or structural code review |
+| Action Folder Subdivision | `references/actions.md` | `adapters/hooks/actions/` growing large, organizing action hooks by domain |

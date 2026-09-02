@@ -145,6 +145,12 @@ src/adapters/hooks/actions/useCreateUser.ts
 src/adapters/hooks/actions/useAuthActions.ts
 ```
 
+Once `actions/` grows past the split trigger (8+ files, or 3+ distinct entities — see `actions.md`), it subdivides into one subfolder per entity, matching the entity's `api/clients/` name:
+```
+src/adapters/hooks/actions/user/useCreateUser.ts
+src/adapters/hooks/actions/auth/useAuthActions.ts
+```
+
 Common hooks (`src/adapters/hooks/common/`): Reusable utility hooks with no backend coupling.
 ```
 src/adapters/hooks/common/useDebounce.ts

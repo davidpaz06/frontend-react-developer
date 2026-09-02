@@ -252,3 +252,40 @@ const handleSubmit = async (data: CreateUserRequest) => {
   }
 };
 ```
+
+---
+
+## 7. Bloated Actions Folder
+
+**What it is:** `adapters/hooks/actions/` stays flat as hooks for many unrelated entities pile in — user hooks, auth hooks, product hooks, order hooks, all in one directory with no organizing structure.
+
+**Why it happens:** Each new hook feels like a small addition. Nobody revisits the folder structure until it's already 15+ files deep and hard to scan.
+
+```
+❌ src/adapters/hooks/actions/
+   ├── useCreateUser.ts
+   ├── useUpdateUser.ts
+   ├── useDeleteUser.ts
+   ├── useAuthActions.ts
+   ├── useCreateProduct.ts
+   ├── useUpdateProduct.ts
+   ├── useCreateOrder.ts
+   └── ... 10 more, no grouping
+```
+
+**Fix** (`actions.md`): Once the folder holds 8+ hook files, or hooks for 3+ distinct entities coexist, subdivide into one subfolder per entity — named after the matching `api/clients/<entity>.api.ts`.
+
+```
+✅ src/adapters/hooks/actions/
+   ├── user/
+   │   ├── useCreateUser.ts
+   │   ├── useUpdateUser.ts
+   │   └── useDeleteUser.ts
+   ├── auth/
+   │   └── useAuthActions.ts
+   └── product/
+       ├── useCreateProduct.ts
+       └── useUpdateProduct.ts
+```
+
+Don't pre-create these subfolders during Scaffolding — start flat, subdivide only once the trigger in `actions.md` is actually met.
